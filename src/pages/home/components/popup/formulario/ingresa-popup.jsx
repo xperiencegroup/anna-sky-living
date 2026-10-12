@@ -80,7 +80,10 @@ export default function IngresaPopup({ isOpen }) {
   };
 
   return (
-    <div className="fixed inset-0 z-20 bg-black/50 flex items-center justify-center">
+    <div
+      data-lenis-prevent
+      className="fixed inset-0 z-20 bg-black/50 flex items-center justify-center"
+    >
       <div className="flex flex-col w-full max-w-[1280px] max-h-svh xl:h-[850px] bg-azul shadow-2xl relative overflow-y-auto">
         {/* Botón cerrar */}
         <button
