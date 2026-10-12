@@ -85,4 +85,14 @@ export const TRACK = {
       instagram: `${PROJECT}:footer:instagram:click`,
     },
   },
+  popupInicial: {
+    cerrar: `${PROJECT}:popup-inicial:cerrar:click`,
+    form: {
+      success: `${PROJECT}:popup-inicial:form:success`,
+      error: `${PROJECT}:popup-inicial:form:error`,
+    },
+  },
+  whatsappFloat: {
+    click: `${PROJECT}:whatsapp:float:click`,
+  },
 };

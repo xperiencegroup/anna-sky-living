@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { usePopupStore } from "../../../../../store/usePopupStore";
 import { supabase } from "../../../../../lib/supabase";
+import { track } from "../../../../../analytics/track";
+import { TRACK } from "../../../../../analytics/track.constants";
 
 const heroImage = "/foto/popup-bg-hero.jpg";
 const modeloTrecasa = "/foto/popup-registro-modelo.png";
@@ -53,6 +55,11 @@ export default function IngresaPopup({ isOpen }) {
     };
   }, [isOpen]);
 
+  const handleClose = () => {
+    track(TRACK.popupInicial.cerrar);
+    closePopup();
+  };
+
   const onSubmit = async (data) => {
     setSubmitState("idle");
     try {
@@ -67,14 +74,21 @@ export default function IngresaPopup({ isOpen }) {
       const { error } = await supabase
         .from("annasky_living_cx_form")
         .insert(payload);
+
       if (error) {
         throw error;
       }
+
+      track(TRACK.popupInicial.form.success);
+
       setSubmitState("success");
       reset();
       closePopup();
     } catch (error) {
       console.error("Error al enviar el formulario:", error);
+
+      track(TRACK.popupInicial.form.error);
+
       setSubmitState("error");
     }
   };
@@ -87,7 +101,7 @@ export default function IngresaPopup({ isOpen }) {
       <div className="flex flex-col w-full max-w-[1280px] max-h-svh xl:h-[850px] bg-azul shadow-2xl relative overflow-y-auto">
         {/* Botón cerrar */}
         <button
-          onClick={closePopup}
+          onClick={handleClose}
           aria-label="Cerrar"
           className="group absolute top-3 right-4 z-10 size-[42px] p-[8px] rounded-[7.5px] bg-naranja flex items-center justify-center transition-colors hover:bg-gris active:bg-blanco"
         >
