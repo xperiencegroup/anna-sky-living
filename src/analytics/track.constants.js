@@ -30,4 +30,8 @@ export const TRACK = {
       slide: (index) => `${PROJECT}:amenidades:carousel:slide:${index}:click`,
     },
   },
+  modelos: {
+    ver: (id) => `${PROJECT}:modelos:${id}:ver:click`,
+    cerrar: (id) => `${PROJECT}:modelos:${id}:cerrar:click`,
+  },
 };

@@ -1,4 +1,6 @@
 import { useSearchParams } from "react-router";
+import { track } from "../../../analytics/track";
+import { TRACK } from "../../../analytics/track.constants";
 
 const tipoA = "/foto/tipologias/tipo-a.png";
 const tipoB = "/foto/tipologias/tipo-b.png";
@@ -48,6 +50,7 @@ export default function Tipologias() {
   const [, setSearchParams] = useSearchParams();
 
   const abrirModal = (modelo) => {
+    track(TRACK.modelos.ver(modelo.id));
     setSearchParams({ modelo: modelo.id });
   };
 

@@ -5,6 +5,8 @@ import { GalleryCarrousel } from "../../../../../components/embla-carousel/Galle
 
 import closeIcon from "../../../../../assets/icons/close.svg";
 import closeIconActive from "../../../../../assets/icons/close-blue.svg";
+import { track } from "../../../../../analytics/track";
+import { TRACK } from "../../../../../analytics/track.constants";
 
 /**
  * Modal universal para todas las fichas de modelo (tipo-a, tipo-b, ..., lock-off).
@@ -37,8 +39,13 @@ export function ModeloModal({
   const [searchParams, setSearchParams] = useSearchParams();
 
   const cerrarModal = () => {
-    searchParams.delete("modelo");
-    setSearchParams(searchParams);
+    track(TRACK.modelos.cerrar(id));
+
+    setSearchParams((prev) => {
+      const params = new URLSearchParams(prev);
+      params.delete("modelo");
+      return params;
+    });
   };
 
   useEffect(() => {
@@ -52,7 +59,10 @@ export function ModeloModal({
   }, []);
 
   return (
-    <div className="fixed top-0 z-50 w-full h-full bg-azul overflow-y-auto">
+    <div
+      data-lenis-prevent
+      className="fixed top-0 z-50 w-full h-full bg-azul overflow-y-auto"
+    >
       <div className="relative w-full flex flex-col items-center px-[44px] pt-[100px] pb-[60px] md:p-[60px] gap-[40px] xl:gap-[20px]">
         {/* Botón de cerrar */}
         <button
