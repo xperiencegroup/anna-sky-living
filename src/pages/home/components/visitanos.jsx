@@ -4,6 +4,9 @@ import {
   phoneInfo,
   whatsappInfo,
 } from "../../../data/social";
+import { track } from "../../../analytics/track";
+import { TRACK } from "../../../analytics/track.constants";
+
 const bannerBg = "/foto/visitanos-background.jpg";
 
 // Icons
@@ -21,11 +24,13 @@ const features = [
     description: phoneInfo.label,
     icon: phoneIcon,
     href: phoneInfo.href,
+    track: TRACK.visitanos.telefono,
   },
   {
     description: mailInfo.label,
     icon: mailIcon,
     href: mailInfo.href,
+    track: TRACK.visitanos.correo,
   },
   {
     title: "Showroom de Ventas",
@@ -33,6 +38,7 @@ const features = [
       "Plaza Vía 01. Rogelio Cantú Gómez 1000, Colinas de San Jerónimo, Monterrey, NL. local 23 y 24",
     icon: pinIcon,
     href: mapsInfo.href,
+    track: TRACK.visitanos.ubicacion,
   },
 ];
 
@@ -75,6 +81,7 @@ export default function Visitanos() {
                 href={whatsappInfo.href}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => track(TRACK.visitanos.whatsapp)}
                 className="w-fit px-[26px] py-[16px] rounded-[5px] button-text text-blanco font-bold uppercase tracking-wide bg-naranja hover:bg-gris active:bg-blanco active:text-azul hover:cursor-pointer"
               >
                 Contáctanos
@@ -113,6 +120,7 @@ export default function Visitanos() {
                     href={feature.href}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => track(feature.track)}
                     className={`flex flex-col w-full max-w-[370px] h-[157px] p-[20px] gap-[10px] justify-center items-center ${index === 1 ? "border-x-2 border-amarillo md:border-none" : "border-x-2 border-amarillo"}`}
                   >
                     <img src={feature.icon} className="h-[26px]" />
@@ -137,6 +145,7 @@ export default function Visitanos() {
             href={mapsInfo.href}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => track(TRACK.visitanos.mapa)}
             className="relative w-full max-w-[1280px] h-svh md:h-[50svh] xl:h-svh"
           >
             <img

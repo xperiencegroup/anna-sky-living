@@ -60,4 +60,11 @@ export const TRACK = {
       error: `${PROJECT}:brochure:form:error`,
     },
   },
+  visitanos: {
+    whatsapp: `${PROJECT}:visitanos:cta:whatsapp:click`,
+    telefono: `${PROJECT}:visitanos:telefono:click`,
+    correo: `${PROJECT}:visitanos:correo:click`,
+    ubicacion: `${PROJECT}:visitanos:ubicacion:click`,
+    mapa: `${PROJECT}:visitanos:mapa:click`,
+  },
 };
