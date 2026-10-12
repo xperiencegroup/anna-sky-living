@@ -1,6 +1,7 @@
 import { useState, useCallback } from "react";
 import { Carousel } from "../../../components/embla-carousel/carousel";
 import { motion } from "motion/react";
+import { TRACK } from "../../../analytics/track.constants";
 
 // images
 const avance1 = "/foto/avances/avance-1.jpg";
@@ -246,6 +247,7 @@ export default function AvanceObra() {
           variant="card"
           autoScrollOptions={{ stopOnMouseEnter: true }}
           onSlideChange={handleSlideChange}
+          tracking={TRACK.avanceObra.carousel}
         />
       </div>
     </section>

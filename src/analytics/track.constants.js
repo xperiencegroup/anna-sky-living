@@ -44,4 +44,11 @@ export const TRACK = {
         `${PROJECT}:vista360:nivel:${id}:carousel:media:${index}:click`,
     },
   },
+  avanceObra: {
+    carousel: {
+      prev: `${PROJECT}:avance-obra:carousel:prev:click`,
+      next: `${PROJECT}:avance-obra:carousel:next:click`,
+      slide: (index) => `${PROJECT}:avance-obra:carousel:slide:${index}:click`,
+    },
+  },
 };
