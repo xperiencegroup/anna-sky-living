@@ -24,7 +24,7 @@ import vista2 from "../../../../../assets/images/modelos/interiores/INTERIORES-2
 
 import imageRender from "../../../../../assets/images/modelos/vista-tipo-a/render.png";
 import imageFrame from "../../../../../assets/images/modelos/vista-tipo-a/frame.png";
-import { GalleryCarrousel } from "../../../../../components/embla-carousel/GalleyCarousel";
+import { GalleryCarrousel } from "../../../../../components/embla-carousel/GalleryCarousel";
 
 const descripcion = [
   {

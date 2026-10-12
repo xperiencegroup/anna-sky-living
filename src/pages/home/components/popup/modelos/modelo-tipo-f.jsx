@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useSearchParams } from "react-router";
-import { GalleryCarrousel } from "../../../../../components/embla-carousel/GalleyCarousel";
+import { GalleryCarrousel } from "../../../../../components/embla-carousel/GalleryCarousel";
 import { NavIndicator } from "../../../../../components/nav-indicator/nav-indicator";
 
 import closeIcon from "../../../../../assets/icons/close.svg";
