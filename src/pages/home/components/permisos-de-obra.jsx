@@ -53,21 +53,28 @@ export default function PermisosDeObra() {
             Permisos de obra
           </h2>
         </Reveal>
-        <p className="w-full max-w-[700px] paragraph text-left min-[1200px]:text-right font-extralight leading-[120%]">
+        <div className="w-full max-w-[700px] paragraph text-left min-[1200px]:text-right font-extralight leading-[120%]">
           <Reveal amount={0.4} delay={0.1}>
-            <b className="font-bold uppercase">ANNA Sky Living</b> cuenta con
-            todos los permisos, licencias y un{" "}
-            <b className="font-bold uppercase">Crédito Puente</b> vigente, un
-            respaldo financiero que garantiza la continuidad de la construcción
-            y refleja la solidez del proyecto.
+            <p>
+              <b className="font-bold uppercase">ANNA Sky Living</b> cuenta con
+              todos los permisos, licencias y un{" "}
+              <b className="font-bold uppercase">Crédito Puente</b> vigente, un
+              respaldo financiero que garantiza la continuidad de la
+              construcción y refleja la solidez del proyecto.
+            </p>
           </Reveal>
-          <br />
-          <br />
+          <p>
+            <br />
+            <br />
+          </p>
           <Reveal amount={0.4} delay={0.18}>
-            Esto brinda mayor certeza a quienes buscan invertir en un desarrollo
-            con bases financieras sanas y un avance de obra comprobable.
+            <p>
+              Esto brinda mayor certeza a quienes buscan invertir en un
+              desarrollo con bases financieras sanas y un avance de obra
+              comprobable.
+            </p>
           </Reveal>
-        </p>
+        </div>
       </div>
     </section>
   );
