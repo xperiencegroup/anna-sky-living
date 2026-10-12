@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, MotionConfig } from "motion/react";
 import { socials, whatsappInfo } from "../../../data/social";
+import { TRACK } from "../../../analytics/track.constants";
+import { track } from "../../../analytics/track";
 
 // Logo & icons
 import annaWhiteLogo from "../../../assets/logos/anna-sky-living-white.svg";
@@ -15,38 +17,43 @@ import contactoIcon from "../../../assets/icons/menu/contacto.svg";
 
 import facebookIcon from "../../../assets/icons/menu/facebook-white.svg";
 import instagramIcon from "../../../assets/icons/menu/instagram-white.svg";
-import { useEffect } from "react";
 
 const navbarButtons = [
   {
     id: "nosotros",
     label: "Nosotros",
     icon: nosotrosIcon,
+    track: TRACK.header.nosotros,
   },
   {
     id: "conoce-proyecto",
     label: "Conoce el proyecto",
     icon: conoceIcon,
+    track: TRACK.header.conoce,
   },
   {
     id: "amenidades",
     label: "Amenidades",
     icon: amenidadesIcon,
+    track: TRACK.header.amenidades,
   },
   {
     id: "modelos",
     label: "Modelos",
     icon: modelosIcon,
+    track: TRACK.header.modelos,
   },
   {
     id: "avance-de-obra",
     label: "Avance de obra",
     icon: avanceIcon,
+    track: TRACK.header.avance,
   },
   {
     id: "contacto",
     label: "Contacto",
     icon: contactoIcon,
+    track: TRACK.header.contacto,
   },
 ];
 
@@ -54,13 +61,16 @@ const socialButtons = [
   {
     ...socials[0],
     icon: facebookIcon,
+    track: TRACK.header.socials.facebook,
   },
   {
     ...socials[1],
     icon: instagramIcon,
+    track: TRACK.header.socials.instagram,
   },
   {
     ...whatsappInfo,
+    track: TRACK.header.socials.whatsapp,
   },
 ];
 
@@ -104,6 +114,15 @@ export default function Navbar() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const openMenu = () => {
+    track(TRACK.header.expand);
+    setIsNavbarOpen(true);
+  };
+  const closeMenu = () => {
+    track(TRACK.header.collapse);
+    setIsNavbarOpen(false);
+  };
+
   return (
     <div
       className={`relative z-10 flex justify-center items-center w-full transition-colors ease-out ${isNavbarOpen ? "bg-azul" : "bg-negro"}`}
@@ -115,6 +134,7 @@ export default function Navbar() {
         {/* Botón Logo */}
         <a
           href="#hero"
+          onClick={() => track(TRACK.header.logo)}
           className="relative w-[94px] h-[31px] hover:cursor-pointer"
         >
           <img
@@ -129,6 +149,7 @@ export default function Navbar() {
             <a
               key={button.id}
               href={`#${button.id}`}
+              onClick={() => track(button.track)}
               className={`max-[820px]:hidden flex uppercase font-bold button-text text-center md:px-[10px] md:py-[16px] xl:p-[16px] rounded-[5px] hover:cursor-pointer hover:bg-gris hover:text-blanco active:bg-blanco active:text-negro ${button.id === "contacto" && "bg-naranja"}`}
             >
               {button.label}
@@ -138,7 +159,7 @@ export default function Navbar() {
 
         {/* Menu Icon */}
         <button
-          onClick={() => setIsNavbarOpen(!isNavbarOpen)}
+          onClick={() => (isNavbarOpen ? closeMenu() : openMenu())}
           className={`flex min-[820px]:hidden size-[56px] justify-center items-center rounded-[10px] p-[10px] transition-colors ${isNavbarOpen ? "bg-blanco" : "bg-naranja"}`}
         >
           <img src={isNavbarOpen ? closeIcon : menuIcon} alt="Ícono de Menu" />
@@ -180,7 +201,7 @@ export default function Navbar() {
 
                 {/* Close button */}
                 <button
-                  onClick={() => setIsNavbarOpen(!isNavbarOpen)}
+                  onClick={() => (isNavbarOpen ? closeMenu() : openMenu())}
                   className={`flex min-[820px]:hidden size-[56px] justify-center items-center rounded-[10px] p-[10px] transition-colors shadow-2xl shadow-black ${isNavbarOpen ? "bg-blanco" : "bg-naranja"}`}
                 >
                   <img
@@ -200,7 +221,10 @@ export default function Navbar() {
                         <motion.a
                           key={index}
                           href={`#${button.id}`}
-                          onClick={() => setIsNavbarOpen(false)}
+                          onClick={() => {
+                            track(button.track);
+                            setIsNavbarOpen(false);
+                          }}
                           variants={itemVariants}
                           className="group w-fit flex items-center font-bold text-left gap-[10px] p-[16px] rounded-[10px] transition-colors transition-shadow hover:bg-gris hover:cursor-pointer hover:shadow-[0px_13px_6px_-4px_rgba(0,0,0,0.2)] hover:shadow-black/20 active:bg-blanco"
                         >
@@ -230,6 +254,7 @@ export default function Navbar() {
                         href={button.href}
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={() => track(button.track)}
                       >
                         <img src={button.icon} alt="Ícono red social" />
                       </a>
