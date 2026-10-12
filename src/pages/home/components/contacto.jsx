@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { supabase } from "../../../lib/supabase";
+import { track } from "../../../analytics/track";
+import { TRACK } from "../../../analytics/track.constants";
 
 import sendIcon from "../../../assets/icons/send.svg";
 import Reveal from "../../../components/animations/reveal";
@@ -47,10 +49,17 @@ export default function Contacto() {
         throw error;
       }
 
+      //* Tracking exitoso
+      track(TRACK.contacto.form.success);
+
       reset();
       setStatus("success");
     } catch (error) {
       console.error("Error al enviar el formulario:", error);
+
+      //* Tracking error
+      track(TRACK.contacto.form.error);
+
       setStatus("error");
     }
   };

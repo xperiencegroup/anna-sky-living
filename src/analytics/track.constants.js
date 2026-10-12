@@ -67,4 +67,10 @@ export const TRACK = {
     ubicacion: `${PROJECT}:visitanos:ubicacion:click`,
     mapa: `${PROJECT}:visitanos:mapa:click`,
   },
+  contacto: {
+    form: {
+      success: `${PROJECT}:contacto:form:success`,
+      error: `${PROJECT}:contacto:form:error`,
+    },
+  },
 };
