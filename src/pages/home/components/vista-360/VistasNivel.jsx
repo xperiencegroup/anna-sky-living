@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import { track } from "../../../../analytics/track";
+import { TRACK } from "../../../../analytics/track.constants";
 
 import chevronIcon from "../../../../assets/icons/arrow.svg";
 
-export function VistasNivel({ nivel, onVolver, photoRef }) {
+export function VistasNivel({ nivelId, nivel, onVolver, photoRef }) {
   const [activa, setActiva] = useState(0);
 
   // Lista unificada: si hay video, va primero y ocupa el lugar de la 1.ª imagen
@@ -15,8 +17,22 @@ export function VistasNivel({ nivel, onVolver, photoRef }) {
     : nivel.imagenes.map((src) => ({ tipo: "imagen", src }));
 
   const total = medios.length;
-  const ir = (dir) => setActiva((i) => (i + dir + total) % total);
+  const ir = (dir) => {
+    track(
+      dir === 1
+        ? TRACK.vista360.carousel.next(nivelId)
+        : TRACK.vista360.carousel.prev(nivelId),
+    );
+
+    setActiva((i) => (i + dir + total) % total);
+  };
   const medio = medios[activa];
+  const seleccionarMedio = (index) => {
+    if (index === activa) return;
+
+    track(TRACK.vista360.carousel.media(nivelId, index + 1));
+    setActiva(index);
+  };
 
   return (
     <div className="self-center flex flex-col gap-[30px] xl:gap-[20px] w-full min-w-0 max-w-[592px]">
@@ -100,7 +116,7 @@ export function VistasNivel({ nivel, onVolver, photoRef }) {
               <li key={i} className="flex-1 min-w-0 aspect-square">
                 <button
                   type="button"
-                  onClick={() => setActiva(i)}
+                  onClick={() => seleccionarMedio(i)}
                   aria-label={
                     m.tipo === "video" ? "Ver video" : `Ver imagen ${i + 1}`
                   }

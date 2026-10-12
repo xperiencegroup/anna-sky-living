@@ -34,4 +34,14 @@ export const TRACK = {
     ver: (id) => `${PROJECT}:modelos:${id}:ver:click`,
     cerrar: (id) => `${PROJECT}:modelos:${id}:cerrar:click`,
   },
+  vista360: {
+    nivel: (id) => `${PROJECT}:vista360:nivel:${id}:click`,
+    volver: (id) => `${PROJECT}:vista360:nivel:${id}:volver:click`,
+    carousel: {
+      prev: (id) => `${PROJECT}:vista360:nivel:${id}:carousel:prev:click`,
+      next: (id) => `${PROJECT}:vista360:nivel:${id}:carousel:next:click`,
+      media: (id, index) =>
+        `${PROJECT}:vista360:nivel:${id}:carousel:media:${index}:click`,
+    },
+  },
 };

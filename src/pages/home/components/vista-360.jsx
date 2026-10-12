@@ -1,5 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import { useIsXl } from "../../../hooks/useIsXl";
+import { useElbowPath } from "../../../hooks/useElbowPath";
+import { track } from "../../../analytics/track";
+import { TRACK } from "../../../analytics/track.constants";
 
 import towerImage from "../../../assets/images/temporal/vista-360.jpg";
 import imagenIcon from "../../../assets/icons/vista-360/imagen.svg";
@@ -9,8 +13,6 @@ import chevronIcon from "../../../assets/icons/arrow.svg";
 // vistas
 import { VistasNivel } from "./vista-360/VistasNivel";
 import { nivelesInfo } from "../../../data/vista-360/niveles";
-import { useIsXl } from "../../../hooks/useIsXl";
-import { useElbowPath } from "../../../hooks/useElbowPath";
 
 // Ajusta estos valores a tu render de la torre
 const IMG_W = 631;
@@ -67,7 +69,11 @@ export default function Vista360({ onSelectLevel }) {
 
   const isXl = useIsXl();
   const { x: TOWER_X, w: TOWER_W } = isXl ? TOWER.xl : TOWER.base;
+
+  // funciones principales
   const handleSelect = (id) => {
+    track(TRACK.vista360.nivel(id));
+
     setAutoplay(false);
     setSelected(id);
     setOpenLevel(id);
@@ -75,8 +81,12 @@ export default function Vista360({ onSelectLevel }) {
   };
 
   const handleVolver = () => {
+    if (openLevel !== null) {
+      track(TRACK.vista360.volver(openLevel));
+    }
+
     setOpenLevel(null);
-    setAutoplay(true); // retoma el recorrido automático
+    setAutoplay(true);
   };
 
   const times = levels.map((l) => (l.y - first.y) / span);
@@ -179,6 +189,7 @@ export default function Vista360({ onSelectLevel }) {
               className="xl:mx-auto min-h-[480px] xl:min-h-svh flex items-center min-[592px]:pb-[40px] xl:pr-[40px]"
             >
               <VistasNivel
+                nivelId={openLevel}
                 photoRef={setPhotoEl}
                 nivel={nivelesInfo[openLevel]}
                 onVolver={handleVolver}
@@ -281,16 +292,22 @@ export default function Vista360({ onSelectLevel }) {
       </div>
 
       {/* botón volver < 800px ancho viewport */}
-      <div className="md:hidden flex w-full justify-center items-center pt-[30px] pb-[55px] px-[40px]">
-        <button
-          type="button"
-          onClick={handleVolver}
-          className="group flex items-center justify-center w-full max-w-[295px] px-[20px] py-[15px] gap-[10px] rounded-[10px] button-big font-bold bg-naranja hover:bg-gris text-blanco uppercase cursor-pointer"
-        >
-          <img src={chevronIcon} alt="" className="rotate-180 h-[16px] w-fit" />
-          <span>Volver</span>
-        </button>
-      </div>
+      {openLevel && (
+        <div className="md:hidden flex w-full justify-center items-center pt-[30px] pb-[55px] px-[40px]">
+          <button
+            type="button"
+            onClick={handleVolver}
+            className="group flex items-center justify-center w-full max-w-[295px] px-[20px] py-[15px] gap-[10px] rounded-[10px] button-big font-bold bg-naranja hover:bg-gris text-blanco uppercase cursor-pointer"
+          >
+            <img
+              src={chevronIcon}
+              alt=""
+              className="rotate-180 h-[16px] w-fit"
+            />
+            <span>Volver</span>
+          </button>
+        </div>
+      )}
 
       {isXl && (
         <svg
