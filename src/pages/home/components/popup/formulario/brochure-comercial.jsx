@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { supabase } from "../../../../../lib/supabase";
 import { usePopupStore } from "../../../../../store/usePopupStore";
+import { track } from "../../../../../analytics/track";
+import { TRACK } from "../../../../../analytics/track.constants";
 
 const brochureImage = "/foto/popup-bg-brochure.jpg";
 import annaLogo from "../../../../../assets/logos/anna-sky-living-white.svg";
@@ -34,6 +36,11 @@ export default function BrochureComercialPopup({ isOpen }) {
     };
   }, [isOpen]);
 
+  const handleClose = () => {
+    track(TRACK.conoceProyecto.popup.cerrar);
+    closePopup();
+  };
+
   const onSubmit = async (data) => {
     setSubmitState("idle");
     try {
@@ -51,20 +58,26 @@ export default function BrochureComercialPopup({ isOpen }) {
       if (error) {
         throw error;
       }
+
+      track(TRACK.conoceProyecto.popup.success);
       setSubmitState("success");
       reset();
     } catch (error) {
       console.error("Error al enviar el formulario:", error);
+      track(TRACK.conoceProyecto.popup.error);
       setSubmitState("error");
     }
   };
 
   return (
-    <div className="fixed inset-0 z-20 overflow-y-auto bg-black/20 flex items-center justify-center">
+    <div
+      data-lenis-prevent
+      className="fixed inset-0 z-20 overflow-y-auto bg-black/20 flex items-center justify-center"
+    >
       <div className="flex flex-col xl:flex-row w-full max-w-[1280px] max-h-svh xl:h-[850px] bg-azul shadow-2xl relative overflow-y-auto">
         {/* Botón cerrar */}
         <button
-          onClick={closePopup}
+          onClick={handleClose}
           aria-label="Cerrar"
           className="group absolute top-3 right-4 z-10 size-[42px] p-[8px] rounded-[7.5px] bg-naranja flex items-center justify-center transition-colors hover:bg-gris active:bg-blanco"
         >

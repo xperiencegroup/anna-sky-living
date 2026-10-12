@@ -8,6 +8,8 @@ import plusvaliaIcon from "../../../assets/icons/plusvalia.svg";
 
 import descargar from "../../../assets/icons/descargar.svg";
 import Reveal from "../../../components/animations/reveal";
+import { track } from "../../../analytics/track";
+import { TRACK } from "../../../analytics/track.constants";
 
 const caracteristicas = [
   {
@@ -76,33 +78,39 @@ export default function ConoceElProyecto() {
           {/* Características */}
           <div className="flex flex-col w-full md:flex-row">
             {caracteristicas.map((caracteristica, index) => (
-              <Reveal key={index} delay={0.18 + index * 0.08}>
-                <div
-                  className={`max-md:self-center flex flex-col justify-center items-center w-full max-w-[280px] md:flex-1 xl:w-[207px] py-[18px] px-[15px] gap-[15px] ${
-                    index === 1
-                      ? "border-x-2 border-amarillo md:border-none"
-                      : "border-x-2 border-amarillo"
-                  }`}
-                >
-                  <img src={caracteristica.icon} alt="" />
+              <Reveal
+                key={index}
+                delay={0.18 + index * 0.08}
+                className={`max-md:self-center flex flex-col justify-center items-center w-full max-w-[280px] md:flex-1 xl:w-[207px] py-[18px] px-[15px] gap-[15px] ${
+                  index === 1
+                    ? "border-x-2 border-amarillo md:border-none"
+                    : "border-x-2 border-amarillo"
+                }`}
+              >
+                <img src={caracteristica.icon} alt="" />
 
-                  <h4 className="paragraph-caps text-negro font-bold uppercase leading-none">
-                    {caracteristica.label}
-                  </h4>
+                <h4 className="paragraph-caps text-negro font-bold uppercase leading-none">
+                  {caracteristica.label}
+                </h4>
 
-                  <p className="parrafos-small text-center text-negro font-light leading-[120%]">
-                    {caracteristica.description}
-                  </p>
-                </div>
+                <p className="parrafos-small text-center text-negro font-light leading-[120%]">
+                  {caracteristica.description}
+                </p>
               </Reveal>
             ))}
           </div>
 
           {/* Botón */}
-          <Reveal delay={0.18 + caracteristicas.length * 0.08}>
+          <Reveal
+            delay={0.18 + caracteristicas.length * 0.08}
+            className="max-xl:self-center "
+          >
             <button
-              onClick={() => openPopup("brochure-comercial")}
-              className="max-xl:self-center w-fit flex items-center px-[26px] py-[16px] gap-[10px] rounded-[5px] button-text font-bold uppercase tracking-wider bg-naranja hover:bg-gris active:bg-azul hover:cursor-pointer"
+              onClick={() => {
+                openPopup("brochure-comercial");
+                track(TRACK.conoceProyecto.brochure);
+              }}
+              className="w-fit flex items-center px-[26px] py-[16px] gap-[10px] rounded-[5px] button-text font-bold uppercase tracking-wider bg-naranja hover:bg-gris active:bg-azul hover:cursor-pointer"
             >
               <img
                 src={descargar}

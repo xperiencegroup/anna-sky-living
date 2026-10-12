@@ -51,4 +51,13 @@ export const TRACK = {
       slide: (index) => `${PROJECT}:avance-obra:carousel:slide:${index}:click`,
     },
   },
+  conoceProyecto: {
+    brochure: `${PROJECT}:conoce-proyecto:cta:brochure:click`,
+
+    popup: {
+      cerrar: `${PROJECT}:brochure:popup:cerrar:click`,
+      success: `${PROJECT}:brochure:form:success`,
+      error: `${PROJECT}:brochure:form:error`,
+    },
+  },
 };
