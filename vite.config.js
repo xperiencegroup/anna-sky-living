@@ -22,6 +22,12 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/foto/, "/anna/onepager/foto"),
       },
+      "/documentos": {
+        target: "https://xperience.realestate/trecasa",
+        changeOrigin: true,
+        rewrite: (path) =>
+          path.replace(/^\/documentos/, "/anna/onepager/documentos"),
+      },
     },
   },
 });

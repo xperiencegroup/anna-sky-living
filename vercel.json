@@ -12,7 +12,11 @@
       "destination": "https://xperience.realestate/trecasa/anna/onepager/foto/:path*"
     },
     {
-      "source": "/((?!video/|foto/).*)",
+      "source": "/documentos/:path*",
+      "destination": "https://xperience.realestate/trecasa/anna/onepager/documentos/:path*"
+    },
+    {
+      "source": "/((?!video/|foto/|documentos/).*)",
       "destination": "/index.html"
     }
   ]
