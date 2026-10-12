@@ -9,7 +9,7 @@ const video3 = "/video/vistas-360/nivel-16-17-18.mp4";
 
 export const nivelesInfo = {
   9: {
-    id: 91,
+    id: 9,
     torre: 1,
     titulo: "NIVEL 9, TORRE 1",
     imagenes: [vista1, vista2, vista3, vista4],
