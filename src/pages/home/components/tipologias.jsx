@@ -68,7 +68,7 @@ export default function Tipologias() {
 
         <Reveal delay={0.1}>
           <p className="paragraph text-center font-light w-full max-w-[632px] lg:max-w-[1100px] text-negro">
-            Cuatro modelos diseñados para diferentes estilos de visa, con
+            Siete modelos diseñados para diferentes estilos de vida, con
             distribuciones funcionales y acabados de primera
           </p>
         </Reveal>
