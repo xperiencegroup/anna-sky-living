@@ -1,3 +1,5 @@
+import { TRACK } from "../../../analytics/track.constants";
+import { track } from "../../../analytics/track";
 import { socials } from "../../../data/social";
 
 import annaLogo from "../../../assets/logos/anna-sky-living-yellow.svg";
@@ -7,22 +9,27 @@ const buttons = [
   {
     id: "nosotros",
     label: "Nosotros",
+    track: TRACK.footer.nosotros,
   },
   {
     id: "conoce-proyecto",
     label: "Conoce el proyecto",
+    track: TRACK.footer.conoce,
   },
   {
     id: "amenidades",
     label: "Amenidades",
+    track: TRACK.footer.amenidades,
   },
   {
     id: "modelos",
     label: "Modelos",
+    track: TRACK.footer.modelos,
   },
   {
     id: "avance-de-obra",
     label: "Avance de obra",
+    track: TRACK.footer.avance,
   },
 ];
 
@@ -32,18 +39,19 @@ export default function Footer() {
       <div className="flex flex-col w-full gap-[20px]">
         {/* Navegación */}
         <div className="flex w-full flex-col min-[800px]:flex-row justify-between items-center max-[800px]:gap-[5px]">
-          <button>
+          <a href="#hero" onClick={() => track(TRACK.footer.logo)}>
             <img
               src={annaLogo}
               alt="Logo Anna Sky Living"
               className="md:w-[87px] xl:w-[143px] xl:h-[48px]"
             />
-          </button>
+          </a>
           {buttons.map((button) => {
             return (
               <a
                 href={`#${button.id}`}
                 key={button.id}
+                onClick={() => track(button.track)}
                 className="button-text text-center font-bold uppercase p-[16px] min-[800px]:p-[10px] xl:p-[16px]"
               >
                 {button.label}
@@ -62,6 +70,10 @@ export default function Footer() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => {
+                    const event = TRACK.footer.socials[social.id];
+                    if (event) track(event);
+                  }}
                   className="group flex size-[40px] justify-center items-center rounded-[5px] bg-naranja hover:bg-gris active:bg-blanco"
                 >
                   <img

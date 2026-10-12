@@ -73,4 +73,16 @@ export const TRACK = {
       error: `${PROJECT}:contacto:form:error`,
     },
   },
+  footer: {
+    logo: `${PROJECT}:footer:logo:click`,
+    nosotros: `${PROJECT}:footer:nosotros:click`,
+    conoce: `${PROJECT}:footer:conoce-proyecto:click`,
+    amenidades: `${PROJECT}:footer:amenidades:click`,
+    modelos: `${PROJECT}:footer:modelos:click`,
+    avance: `${PROJECT}:footer:avance-obra:click`,
+    socials: {
+      facebook: `${PROJECT}:footer:facebook:click`,
+      instagram: `${PROJECT}:footer:instagram:click`,
+    },
+  },
 };
