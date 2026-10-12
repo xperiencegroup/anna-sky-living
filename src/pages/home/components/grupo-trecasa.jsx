@@ -1,9 +1,12 @@
+import Reveal from "../../../components/animations/reveal";
+import { track } from "../../../analytics/track";
+import { TRACK } from "../../../analytics/track.constants";
+
 import logoTrecasa from "../../../assets/logos/grupo-trecasa.png";
 import clickIcon from "../../../assets/icons/click.svg";
 import cascoIcon from "../../../assets/icons/casco.svg";
 import edificioIcon from "../../../assets/icons/edificio.svg";
 import insigniaIcon from "../../../assets/icons/insignia.svg";
-import Reveal from "../../../components/animations/reveal";
 
 const datos = [
   {
@@ -62,6 +65,7 @@ export default function GrupoTrecasa() {
             href="https://grupotrecasa.com.mx"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => track(TRACK.nosotros.web)}
             className="group flex items-center w-fit px-[36px] py-[16px] gap-[10px] rounded-[10px] bg-naranja hover:bg-gris hover:text-blanco active:bg-azul active:text-blanco drop-shadow-2xl hover:cursor-pointer"
           >
             <img
@@ -80,22 +84,20 @@ export default function GrupoTrecasa() {
       <div className="flex flex-col max-[720px]:items-center max-[720px]:w-full min-[720px]:flex-row">
         {datos.map((dato, index) => {
           return (
-            <Reveal key={dato.id} delay={index * 0.12}>
-              <div
-                className={`flex flex-col max-[720px]:justify-center max-[720px]:items-center text-center w-full max-w-[287px] h-[138px] min-[720px]:w-[209px] min-[720px]:h-[180px] py-[60px] min-[720px]:py-[26px] px-[15px] gap-[10px] min-[720px]:gap-[15px] border-x-2 border-amarillo ${dato.id === "experiencia" ? "min-[720px]:border-none" : ""}`}
-              >
-                <img
-                  src={dato.icon}
-                  alt={`Ícono de ${dato.description}`}
-                  className="h-[35px]"
-                />
-                <p className="paragraph-caps font-bold uppercase">
-                  {dato.title}
-                </p>
-                <p className="flex-1 paragraph-small font-light">
-                  {dato.description}
-                </p>
-              </div>
+            <Reveal
+              key={dato.id}
+              delay={index * 0.12}
+              className={`flex flex-col max-[720px]:justify-center max-[720px]:items-center text-center w-full max-w-[287px] h-[138px] min-[720px]:w-[209px] min-[720px]:h-[180px] py-[60px] min-[720px]:py-[26px] px-[15px] gap-[10px] min-[720px]:gap-[15px] border-x-2 border-amarillo ${dato.id === "experiencia" ? "min-[720px]:border-none" : ""}`}
+            >
+              <img
+                src={dato.icon}
+                alt={`Ícono de ${dato.description}`}
+                className="h-[35px]"
+              />
+              <p className="paragraph-caps font-bold uppercase">{dato.title}</p>
+              <p className="flex-1 paragraph-small font-light">
+                {dato.description}
+              </p>
             </Reveal>
           );
         })}

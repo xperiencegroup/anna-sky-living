@@ -17,4 +17,10 @@ export const TRACK = {
       whatsapp: `${PROJECT}:header:whatsapp:click`,
     },
   },
+  hero: {
+    showroom: `${PROJECT}:hero:cta:showroom:click`,
+  },
+  nosotros: {
+    web: `${PROJECT}:nosotros:cta:visitar-web:click`,
+  },
 };

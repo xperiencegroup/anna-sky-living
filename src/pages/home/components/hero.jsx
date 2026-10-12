@@ -1,6 +1,8 @@
 import Navbar from "./navbar";
 import annaSkyLiving from "../../../assets/logos/anna-sky-living-white.svg";
 import Reveal from "../../../components/animations/reveal";
+import { track } from "../../../analytics/track";
+import { TRACK } from "../../../analytics/track.constants";
 
 export default function Hero() {
   return (
@@ -47,6 +49,7 @@ export default function Hero() {
         <Reveal delay={0.24} duration={1.1}>
           <a
             href="#showroom"
+            onClick={() => track(TRACK.hero.showroom)}
             className="w-fit px-[26px] py-[16px] rounded-[5px] text-center button-text font-bold uppercase tracking-wider bg-naranja hover:bg-gris hover:text-blanco active:bg-blanco active:text-azul hover:cursor-pointer"
           >
             Visita nuestro showroom
