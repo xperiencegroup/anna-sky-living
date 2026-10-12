@@ -23,4 +23,11 @@ export const TRACK = {
   nosotros: {
     web: `${PROJECT}:nosotros:cta:visitar-web:click`,
   },
+  amenidades: {
+    carousel: {
+      prev: `${PROJECT}:amenidades:carousel:prev:click`,
+      next: `${PROJECT}:amenidades:carousel:next:click`,
+      slide: (index) => `${PROJECT}:amenidades:carousel:slide:${index}:click`,
+    },
+  },
 };

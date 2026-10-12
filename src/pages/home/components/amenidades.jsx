@@ -18,6 +18,7 @@ import ludotecaIcon from "../../../assets/icons/amenidades/ludoteca.svg";
 import firePitsIcon from "../../../assets/icons/amenidades/fire-pits.svg";
 import padelIcon from "../../../assets/icons/amenidades/padel.svg";
 import Reveal from "../../../components/animations/reveal";
+import { TRACK } from "../../../analytics/track.constants";
 
 // images
 const albercaImage = "/foto/amenidades/alberca.webp";
@@ -201,6 +202,7 @@ export default function Amenidades() {
           slides={amenidades}
           variant="card"
           isAnySelected={selectedAmenidad}
+          tracking={TRACK.amenidades.carousel}
         />
 
         <p className="absolute -bottom-8 min-[375px]:-bottom-4 right-1/2 translate-x-[50%] caption text-blanco font-light">

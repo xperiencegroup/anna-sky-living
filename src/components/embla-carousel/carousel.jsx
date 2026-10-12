@@ -1,11 +1,12 @@
 import React, { useEffect, useRef } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import AutoScroll from "embla-carousel-auto-scroll";
-import arrowIcon from "../../assets/icons/arrow.svg";
+import { track } from "../../analytics/track";
 import {
   SelectedSnapDisplay,
   useSelectedSnapDisplay,
 } from "./EmblaCarouselSelectedSnapDisplay";
+import arrowIcon from "../../assets/icons/arrow.svg";
 
 export function Carousel({
   slides = [],
@@ -14,6 +15,7 @@ export function Carousel({
   autoScrollOptions = {},
   emblaOptions = {},
   onSlideChange,
+  tracking,
 }) {
   const autoScroll = useRef(
     AutoScroll({
@@ -66,18 +68,26 @@ export function Carousel({
   }, [isAnySelected, emblaApi]);
 
   const handleSlideClick = (index) => {
+    if (tracking?.slide) {
+      track(tracking.slide(index + 1));
+    }
+
     isPausedRef.current = true;
     autoScroll.current.stop();
     emblaApi?.scrollTo(index);
   };
 
   const scrollNext = () => {
+    if (tracking?.next) track(tracking.next);
+
     isPausedRef.current = true;
     autoScroll.current.stop();
     emblaApi?.scrollNext();
   };
 
   const scrollPrev = () => {
+    if (tracking?.prev) track(tracking.prev);
+
     isPausedRef.current = true;
     autoScroll.current.stop();
     emblaApi?.scrollPrev();
