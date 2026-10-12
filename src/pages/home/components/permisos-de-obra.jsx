@@ -32,15 +32,12 @@ export default function PermisosDeObra() {
               key={dato.id}
               amount={0.4}
               delay={index === 0 ? 0 : 0.1 + (index - 1) * 0.08}
+              className={`flex flex-col justify-center items-center text-center w-full max-w-[287px] h-[125px] min-[720px]:w-[209px] min-[720px]:h-[209px] py-[68px] px-[15px] gap-[15px] border-x-2 border-amarillo ${dato.id === "factibilidad" ? "min-[720px]:border-none" : ""}`}
             >
-              <div
-                className={`flex flex-col justify-center items-center text-center w-full max-w-[287px] h-[125px] min-[720px]:w-[209px] min-[720px]:h-[209px] py-[68px] px-[15px] gap-[15px] border-x-2 border-amarillo ${dato.id === "factibilidad" ? "min-[720px]:border-none" : ""}`}
-              >
-                <img src={dato.icon} alt={`Ícono de ${dato.description}`} />
-                <p className="paragraph-caps font-semibold uppercase min-[720px]:whitespace-pre-line">
-                  {dato.title}
-                </p>
-              </div>
+              <img src={dato.icon} alt={`Ícono de ${dato.description}`} />
+              <p className="paragraph-caps font-semibold uppercase min-[720px]:whitespace-pre-line">
+                {dato.title}
+              </p>
             </Reveal>
           );
         })}
