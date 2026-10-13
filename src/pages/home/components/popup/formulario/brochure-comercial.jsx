@@ -4,6 +4,7 @@ import { supabase } from "../../../../../lib/supabase";
 import { usePopupStore } from "../../../../../store/usePopupStore";
 import { track } from "../../../../../analytics/track";
 import { TRACK } from "../../../../../analytics/track.constants";
+import { BROCHURE_URL } from "../../../../../const/brochure";
 
 const brochureImage = "/foto/popup-bg-brochure.jpg";
 import annaLogo from "../../../../../assets/logos/anna-sky-living-white.svg";
@@ -52,15 +53,22 @@ export default function BrochureComercialPopup({ isOpen }) {
         consent: data.consent ?? null,
         origin: "brochure",
       };
+
       const { error } = await supabase
         .from("annasky_living_cx_form")
         .insert(payload);
+
       if (error) {
         throw error;
       }
 
       track(TRACK.conoceProyecto.popup.success);
+
+      //* Abrir brochure en una nueva pestaña
+      window.open(BROCHURE_URL, "_blank", "noopener,noreferrer");
+
       setSubmitState("success");
+      closePopup();
       reset();
     } catch (error) {
       console.error("Error al enviar el formulario:", error);
