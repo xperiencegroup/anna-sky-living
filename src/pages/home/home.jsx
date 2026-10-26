@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useSearchParams } from "react-router";
 import { usePopupStore } from "../../store/usePopupStore";
 
@@ -21,12 +22,40 @@ import { ModeloModal } from "./components/popup/modelos/modelo-modal";
 import { MODELOS } from "../../data/modelos";
 import Vista360 from "./components/vista-360";
 
+const POPUP_DELAY = 12000;
+
 export default function Home() {
   const [searchParams] = useSearchParams();
   const activePopup = usePopupStore((state) => state.activePopup);
 
   const modeloId = searchParams.get("modelo");
   const modeloData = MODELOS[modeloId];
+
+  const openPopup = usePopupStore((state) => state.openPopup);
+
+  // aparecer popup de registro después de x tiempo
+  useEffect(() => {
+    let timer;
+
+    const handleFirstScroll = () => {
+      window.removeEventListener("scroll", handleFirstScroll);
+
+      timer = setTimeout(() => {
+        if (!usePopupStore.getState().activePopup) {
+          openPopup("register");
+        }
+      }, POPUP_DELAY);
+    };
+
+    window.addEventListener("scroll", handleFirstScroll, {
+      passive: true,
+    });
+
+    return () => {
+      window.removeEventListener("scroll", handleFirstScroll);
+      clearTimeout(timer);
+    };
+  }, [openPopup]);
 
   return (
     <main className="flex flex-col">
