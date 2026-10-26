@@ -80,14 +80,14 @@ export default function BrochureComercialPopup({ isOpen }) {
   return (
     <div
       data-lenis-prevent
-      className="fixed inset-0 z-20 overflow-y-auto bg-black/20 flex items-center justify-center"
+      className="fixed inset-0 z-20 overflow-y-auto bg-black/50 flex items-center justify-center"
     >
-      <div className="flex flex-col xl:flex-row w-full max-w-[1280px] max-h-svh xl:h-[850px] bg-azul shadow-2xl relative overflow-y-auto">
+      <div className="flex flex-col xl:flex-row w-full max-w-[1280px] max-h-svh xl:h-[850px] bg-azul shadow-2xl relative overflow-y-auto scale-90 landscape:scale-85">
         {/* Botón cerrar */}
         <button
           onClick={handleClose}
           aria-label="Cerrar"
-          className="group absolute top-3 right-4 z-10 size-[42px] p-[8px] rounded-[7.5px] bg-naranja flex items-center justify-center transition-colors hover:bg-gris active:bg-blanco"
+          className="group absolute z-50 top-3 right-4 z-10 size-[42px] p-[8px] rounded-[7.5px] bg-naranja flex items-center justify-center transition-colors hover:bg-gris active:bg-blanco"
         >
           <img
             draggable={false}
@@ -105,6 +105,7 @@ export default function BrochureComercialPopup({ isOpen }) {
 
         {/* ===== IMAGEN ===== */}
         <div className="relative shrink-0 h-[260px] xl:h-full w-full xl:w-[600px] overflow-hidden">
+          <div className="z-10 absolute inset-0 w-full h-full bg-linear-to-b from-azul/2 via-azul/10 via-60% to-azul/80" />
           <img
             src={brochureImage}
             alt="Anna Sky Living Amenidades"
@@ -143,7 +144,7 @@ export default function BrochureComercialPopup({ isOpen }) {
               className="flex flex-col gap-4"
             >
               {/* Nombre */}
-              <div className="flex flex-col gap-1">
+              <div className="relative flex flex-col gap-1">
                 <label className="flex items-center h-[70px] gap-2.5 border rounded-[5px] px-[20px] py-[10px] border-naranja">
                   <img
                     src={userIcon}
@@ -165,14 +166,14 @@ export default function BrochureComercialPopup({ isOpen }) {
                   />
                 </label>
                 {errors.name && (
-                  <span className="text-red-400 text-xs px-1">
+                  <span className="absolute left-2 -bottom-2 bg-azul rounded-full text-red-400 text-xs px-1">
                     {errors.name.message}
                   </span>
                 )}
               </div>
 
               {/* Correo */}
-              <div className="flex flex-col gap-1">
+              <div className="relative flex flex-col gap-1">
                 <label className="flex items-center h-[70px] gap-2.5 border rounded-[5px] px-[20px] py-[10px] border-naranja">
                   <img
                     src={mailIcon}
@@ -194,14 +195,14 @@ export default function BrochureComercialPopup({ isOpen }) {
                   />
                 </label>
                 {errors.mail && (
-                  <span className="text-red-400 text-xs px-1">
+                  <span className="absolute left-2 -bottom-2 bg-azul rounded-full text-red-400 text-xs px-1">
                     {errors.mail.message}
                   </span>
                 )}
               </div>
 
               {/* Teléfono */}
-              <div className="flex flex-col gap-1">
+              <div className="relative flex flex-col gap-1">
                 <label className="flex items-center h-[70px] gap-2.5 border rounded-[5px] px-[20px] py-[10px] border-naranja">
                   <img
                     src={phoneIcon}
@@ -223,7 +224,7 @@ export default function BrochureComercialPopup({ isOpen }) {
                   />
                 </label>
                 {errors.phone && (
-                  <span className="text-red-400 text-xs px-1">
+                  <span className="absolute left-2 -bottom-2 bg-azul rounded-full text-red-400 text-xs px-1">
                     {errors.phone.message}
                   </span>
                 )}

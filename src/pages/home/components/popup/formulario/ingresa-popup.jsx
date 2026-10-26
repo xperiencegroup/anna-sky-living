@@ -98,7 +98,7 @@ export default function IngresaPopup({ isOpen }) {
       data-lenis-prevent
       className="fixed inset-0 z-20 bg-black/50 flex items-center justify-center"
     >
-      <div className="flex flex-col w-full max-w-[1280px] max-h-svh xl:h-[850px] bg-azul shadow-2xl relative overflow-y-auto">
+      <div className="flex flex-col w-full max-w-[1280px] max-h-svh xl:h-[850px] bg-azul shadow-2xl relative overflow-y-auto scale-90 landscape:scale-85">
         {/* Botón cerrar */}
         <button
           onClick={handleClose}
@@ -217,7 +217,7 @@ export default function IngresaPopup({ isOpen }) {
                 onSubmit={handleSubmit(onSubmit)}
                 className="flex flex-col gap-5"
               >
-                <label className="flex items-center h-[70px] gap-2.5 border border-naranja rounded-[5px] focus-within:border-orange-500 px-[20px] py-[10px]">
+                <label className="relative flex items-center h-[70px] gap-2.5 border border-naranja rounded-[5px] focus-within:border-orange-500 px-[20px] py-[10px]">
                   <img
                     src={userIcon}
                     alt="Ícono de usuario"
@@ -237,13 +237,13 @@ export default function IngresaPopup({ isOpen }) {
                     className="flex-1 outline-none paragraph text-blanco placeholder:text-blanco/80 font-extralight placeholder:paragraph"
                   />
                   {errors.name && (
-                    <span className="text-red-400 text-xs px-1">
+                    <span className="absolute -bottom-2 bg-azul rounded-full text-red-400 text-xs px-1">
                       {errors.name.message}
                     </span>
                   )}
                 </label>
 
-                <label className="flex items-center h-[70px] gap-2.5 border border-naranja rounded-[5px] focus-within:border-orange-500 px-[20px] py-[10px]">
+                <label className="relative flex items-center h-[70px] gap-2.5 border border-naranja rounded-[5px] focus-within:border-orange-500 px-[20px] py-[10px]">
                   <img
                     src={mailIcon}
                     alt="Ícono de usuario"
@@ -263,13 +263,13 @@ export default function IngresaPopup({ isOpen }) {
                     className="flex-1 outline-none paragraph text-blanco placeholder:text-blanco/80 font-extralight placeholder:paragraph"
                   />
                   {errors.mail && (
-                    <span className="text-red-400 text-xs px-1">
+                    <span className="absolute -bottom-2 bg-azul rounded-full text-red-400 text-xs px-1">
                       {errors.mail.message}
                     </span>
                   )}
                 </label>
 
-                <label className="flex items-center h-[70px] gap-2.5 border border-naranja rounded-[5px] focus-within:border-orange-500 px-[20px] py-[10px]">
+                <label className="relative flex items-center h-[70px] gap-2.5 border border-naranja rounded-[5px] focus-within:border-orange-500 px-[20px] py-[10px]">
                   <img
                     src={phoneIcon}
                     alt="Ícono de usuario"
@@ -289,7 +289,7 @@ export default function IngresaPopup({ isOpen }) {
                     className="flex-1 outline-none paragraph text-blanco placeholder:text-blanco/80 font-extralight placeholder:paragraph"
                   />
                   {errors.phone && (
-                    <span className="text-red-400 text-xs px-1">
+                    <span className="absolute -bottom-2 bg-azul rounded-full text-red-400 text-xs px-1">
                       {errors.phone.message}
                     </span>
                   )}

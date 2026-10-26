@@ -1,7 +1,5 @@
 import { useEffect } from "react";
 import { useSearchParams } from "react-router";
-import { NavIndicator } from "../../../../../components/nav-indicator/nav-indicator";
-import { GalleryCarrousel } from "../../../../../components/embla-carousel/GalleryCarousel";
 
 import closeIcon from "../../../../../assets/icons/close.svg";
 import closeIconActive from "../../../../../assets/icons/close-blue.svg";
@@ -61,9 +59,9 @@ export function ModeloModal({
   return (
     <div
       data-lenis-prevent
-      className="fixed top-0 z-50 w-full h-full bg-azul overflow-y-auto"
+      className="fixed top-0 z-50 w-full h-full bg-black/50 overflow-y-auto"
     >
-      <div className="relative w-full flex flex-col items-center px-[44px] pt-[100px] pb-[60px] md:p-[60px] gap-[40px] xl:gap-[20px]">
+      <div className="relative w-full flex flex-col items-center px-[44px] pt-[100px] pb-[60px] md:p-[60px] gap-[40px] xl:gap-[20px] bg-azul scale-94 landscape:scale-90">
         {/* Botón de cerrar */}
         <button
           onClick={cerrarModal}
