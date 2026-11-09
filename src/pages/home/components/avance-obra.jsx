@@ -14,6 +14,7 @@ const avance12 = "/foto/avances/avance-12.jpg";
 const avance14 = "/foto/avances/avance-14.jpg";
 const avance17 = "/foto/avances/avance-17.jpg";
 const avance18 = "/foto/avances/avance-18.jpg";
+const avance19 = "/foto/avances/avance-19.jpg";
 const slideFinalImage = "/foto/avances/slide-final.jpg";
 
 // videos 2025
@@ -29,6 +30,7 @@ const video12 = "/video/2026/2026-03.mp4";
 const video14 = "/video/2026/2026-05.mp4";
 const video17 = "/video/2026/2026-06.mp4";
 const video18 = "/video/2026/2026-08.mp4";
+const video19 = "/video/2026/2026-10.mp4";
 
 // slide final content
 import annaLogoYellow from "../../../assets/logos/anna-sky-living-yellow.svg";
@@ -95,6 +97,12 @@ const slidesData = [
     description: "Avance de obra nivel 12, torre 2",
     image: avance18,
     video: video18,
+  },
+  {
+    date: "OCTUBRE 2026",
+    description: "Torre 1 lista",
+    image: avance19,
+    video: video19,
   },
 ];
 
